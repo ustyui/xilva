@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+	<node name="XBus" pkg="xilva_core" type="bus.py" output="screen"/>
+	<node name="Xencoder" pkg="xilva_core" type="encoder.py" output="screen" args="ibuki"/>
+	<node name="Act_ibuki" pkg="xilva_core" type="ibuki_actuator.py" output="screen"/>
+
+
+</launch>

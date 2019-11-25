@@ -1,0 +1,21 @@
+<package format="2">
+  <name>xilva</name>
+  <version>2.0.1</version>
+  <description>
+  xilva: android system for R and D and versatile usages
+  </description>
+
+  <maintainer email="yu.shiqi@irl.sys.es.osaka-u.ac.jp">Shiqi Yu</maintainer>
+
+  <license>GPL</license>
+
+  <author>Shiqi Yu</author>
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <exec_depend>xilva_core</exec_depend>
+
+  <export>
+    <metapackage/>
+  </export>
+
+</package>
