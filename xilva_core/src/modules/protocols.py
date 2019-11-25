@@ -96,8 +96,8 @@ class ibuki():
         "constraint limits"
         output_buffer = np.clip(output_buffer, self.minlimit, self.maxlimit)
         for elements in self.groups:
-            payload = np.take(output_buffer, self.groups[elements])
-            embed_msg = utils.merge(payload)
+            payload = np.take(output_buffer, self.groups[elements])*10
+            embed_msg = utils.merge(payload,5)
             dic[elements] = embed_msg
         return dic
             
