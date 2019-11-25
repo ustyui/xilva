@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="191" src="/ibukiDEVGuide/assets/images/logo.png">
+  <img width="191" src="/xilvaDEVGuide/assets/images/logo.png">
 </p>
 
 **Silva** is an android operation framework generates **lifelike android motion** by using a developed framework by merging multiple motion generator models.
