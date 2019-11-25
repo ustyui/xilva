@@ -15,12 +15,12 @@ _RATE = 40
 class Joint():
     def __init__(self, name = 'void'):
         self.name = name
-        self.payload = []
+        self.payload = ''
 
 def callback(msg, args):
     instance = args
-    if instance.name == dev_name:
-        instance.payloads[msg.name] = msg.payload
+    if msg.name == dev_name:
+        instance.payload = msg.payload
 "socket initialization"
 "a subscriber to receive and send"
 "get ip, port"
@@ -37,6 +37,12 @@ if __name__ == "__main__":
     mbed_joint = Joint()   
     logtext = logs.Roslog("ibuki_actuator")
     sub = rospy.Subscriber('/ibuki/encoded_commands', EvansString, callback, mbed_joint)
+
+    while not rospy.is_shutdown():
+        if (mbed_joint.payload != ''):
+            break
+        rospy.sleep(0.5)
+        rospy.loginfo("Waiting commands...")
     
     while not rospy.is_shutdown():
         
