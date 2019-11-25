@@ -51,9 +51,11 @@ class ibuki_gazebo():
             dic[ele] = 0
         output_buffer = np.take(payload_in, self.mapping)
         output_buffer = output_buffer * self.directions
+        output_buffer = output_buffer + self.defaults
+        np.clip(output_buffer, self.minlimit, self.maxlimit)
         "constraint limits"
         for (i,k) in enumerate(self.groups):
-            dic[self.groups[k]] = np.clip((output_buffer[i]+self.defaults[i])*0.0174, self.minlimit, self.maxlimit)
+            dic[self.groups[k]] = (output_buffer[i])*0.0174
         return dic
             
         
