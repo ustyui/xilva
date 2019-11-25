@@ -1,11 +1,9 @@
-robot: ibuki
-dofs: 50
-rate: 40
-broadcast: 5
-joint_mask_h: 33554431
-joint_mask_l: 33554431
-weight_hw_adjust: 0
-weight_idle: 1
-weight_reflex: 1 
-weight_slave: 1
-weight_auto: 1
+dofs: 14
+defaults: [0, 0, -90, 0, -90, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+directions: [1, 1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+limits:
+  max: [12, 60, 90, 25, 90, 45, 20, 12, 80, 22, 18, 30, 30, 30]
+  min: [-12, -60, -90, -45, -90, -25, -18, -12, -80, -18, -30, -18, 1, 6]
+mapping: [40, 42, 1, 5, 0, 10, 4, 2, 3, 34, 33, 32, 26, 39]
+groups: 
+  wholebody: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
