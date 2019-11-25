@@ -137,6 +137,8 @@ class Mixer(object):
         
         return self.joint_means
     "if there is any interrupt message, do interrupt first"
+    "during this period, the motion of normal channel all goes into a buffer"
+    "after the interrupt motion is finished, release this motion buffer"
     def sys_interrupt(self, confirm):
         if (confirm == 999):
             INT_joint_means = sum(self.weights_int*self.payload_int)
