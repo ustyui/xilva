@@ -80,7 +80,6 @@ if __name__ == "__main__":
         "since the output is obtained, choose where it goes"
         if (dev_name == "ibuki_gazebo"):
             output = protocol.get_output(message._payload)
-            print output
             robot.set_angles(output)
         
         if (dev_name == 'ibuki'):
@@ -94,5 +93,6 @@ if __name__ == "__main__":
             "make the message with dict name"
             "publish"
                     
+        #TODO: commu
         rate.sleep()
         "make message"

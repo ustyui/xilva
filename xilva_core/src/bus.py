@@ -1,5 +1,8 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
+"""
+actually the bus is a blend tree
+"""
 import rospy
 from xilva_core.msg import Evans
 from sensor_msgs.msg import Joy

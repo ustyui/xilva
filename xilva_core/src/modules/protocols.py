@@ -49,10 +49,14 @@ class ibuki_gazebo():
         dic = {}
         for ele in self.groups.values():
             dic[ele] = 0
+        "input: angles"
         output_buffer = np.take(payload_in, self.mapping)
+        print ("Output angles:")
+        print output_buffer
         output_buffer = output_buffer * self.directions
+        output_buffer = np.clip(output_buffer, self.minlimit, self.maxlimit)
         output_buffer = output_buffer + self.defaults
-        np.clip(output_buffer, self.minlimit, self.maxlimit)
+        
         "constraint limits"
         for (i,k) in enumerate(self.groups):
             dic[self.groups[k]] = (output_buffer[i])*0.0174
@@ -96,18 +100,23 @@ class ibuki():
         "constraint limits"
         output_buffer = np.clip(output_buffer, self.minlimit, self.maxlimit)
         for elements in self.groups:
-            payload = np.take(output_buffer, self.groups[elements])*10
-            embed_msg = utils.merge(payload,5)
+            payload = np.take(output_buffer, self.groups[elements])
+            embed_msg = utils.merge(payload, 5)
             dic[elements] = embed_msg
         return dic
             
-            
+#TODO: commu
         
 class commu_with_mobility():
     def __init__(self, _name = 'commu_with_mobility'):
         print "protocol: using commu with mobility."
         self._name =  _name
         self.param_config = utils.read_yaml('xilva_core', self._name)
+        self.directions = np.array(self.get_directions())
+        self.defaults = np.array(self.get_defaults())
+        self.maxlimit, self.minlimit = np.array(self.get_limits())
+        self.mapping =np.array(self.get_mapping())
+        self.groups = self.get_groups()
     def get_dof(self):
         return self.param_config('dofs')
     def get_defaults(self):
