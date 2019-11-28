@@ -20,3 +20,6 @@ We believe that in computer graphics, human-liked agents can change humans' cogn
 We also believe that in the real world, the same thing will happen.
 
 Xilva appreciates to anyone who has interest in it, make contribution to/with it.
+
+Please see what we have achieved using xilva [here](https://www.youtube.com/channel/UCY7OAwFBg-xmhlJZp_2PQGw).
+
