@@ -4,6 +4,8 @@ If ROS is a system that turns all of the robot softwares into a generalized form
 Then xilva is a system that keeps the generalization of ROS, 
 while, customizes for android robots when using the generalized android softwares to control different android robots.
 
+xilva, cyber-physics interface of linking various androids.
+
 These are android robots. They have human apperances, they speak, move, behave like a human. These make android robots unique and different from normal humanoids.
 
 The purpose to design xilva, is to make a reusable behavioral system for these androids. So that every time in this world a new android is born, this android can happlily use xilva as its own behavior system without any compatibilty problems.
