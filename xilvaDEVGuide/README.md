@@ -1,11 +1,12 @@
-# Silva System Development Guide
+# Xilva System Development Guide
 
 > **Info** for research development! This guide is under active development.
 
-This guide describes how to make the Silva operation system work on a humanoid robot(or not!). It enables developers to:
+This guide includes:
 
-* Have a [quick start](en/setup/initial.md).
-* Learn the [configuration of the robot](en/setup/configuration.md)
+* See the [overview](en/concept/overview.md).
+* Have a [initial setup & configuration](en/setup/initial.md).
+* Learn the [configuration of the robot](en/setup/configuration.md).
 
 * Understand the [system architecture](en/concept/architecture.md)
 * Understand and use the messages under [EVANS protocol](en/concept/protocol.md)
