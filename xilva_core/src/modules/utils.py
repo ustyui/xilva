@@ -95,4 +95,15 @@ def merge(_global_joint_now, _index = 3):
     else:
         # raise OverflowError
         return 0
-        
+    
+#==============================================================================
+# NEGATIVE TO ZERO
+# 
+# return only positive, if negative, to 0
+#==============================================================================
+def negative_to_zero(value):
+    if value < 0:
+        value = 0
+    return value
+
+
