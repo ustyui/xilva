@@ -52,6 +52,7 @@ class Network():
         
         fasciamap = np.array(self.param_config['fascia_select'][fascia_name])
         direction = np.array(self.param_config['fascia_direction'][fascia_name])
+        "on the left of join=-1"
         force_dir = np.array(self.param_config['force_direction'][fascia_name])
         self.selected_angles = np.take(payload_in, self.mapping)
         line_angles = np.take(payload_in, fasciamap)
@@ -62,7 +63,7 @@ class Network():
         "calculate estimated torque"
         line_rads = np.deg2rad(line_angles)
         line_sines = np.sin(line_rads)
-        est_torque = -self.myu*est_tension*line_sines*direction*force_dir
+        est_torque = -self.myu*est_tension*line_sines*force_dir
         "why direction: the tense force is applied always the same direction with fasica looses"
         line_outangles = np.rad2deg(line_rads + est_torque)
         "put it into normal output"
