@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import modules.utils as utils
+import pandas as pd
 """
 protocol classes.
 Input: class it self
@@ -138,3 +139,10 @@ class commu_with_mobility():
         "get mbed format string output with names - EvansStrings"
         cmbed = "yohee"
         return cmbed
+
+"class rad data frames. For more info see https://github.com/ustyui/silva/blob/master/silva_beta/doc/data_input_format.md"
+
+def read_dfcsv(csvpath):
+    df = pd.read_csv(csvpath, delimiter=',')
+    return df
+    
