@@ -3,6 +3,7 @@
 import numpy as np
 import modules.utils as utils
 import pandas as pd
+import rospy
 """
 protocol classes.
 Input: class it self

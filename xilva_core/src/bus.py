@@ -190,7 +190,8 @@ if __name__ == "__main__":
         rospy.logfatal(logtext.report_log(10))
     
     "Load Static Variables."
-    dev_name = param_config['robot']
+    dev_name = param_config['ref_robot']
+    "dofs: the dofs can be more than 50, but not less than 50"
     _DRIVEUNITS = param_config['dofs']
     _RATE = param_config['rate']
     _TRATE = param_config['broadcast']
@@ -208,7 +209,9 @@ if __name__ == "__main__":
     
     rospy.loginfo("Xilva Xbus OK")
     
-    Xbus = Mixer('ibuki')
+    ref_robot = 'ibuki'
+    rospy.set_param('/xilva/ref_robot', ref_robot)
+    Xbus = Mixer(ref_robot)
     
     Xbus.start()
     
