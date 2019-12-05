@@ -21,6 +21,7 @@ class Mixer(object):
     def __init__(self, dev_name):
 
         self._name = dev_name
+        self._clock = 0
         "check the system availibity"
         while not rospy.is_shutdown():
             if rospy.has_param(dev_name+'/drive_units'):
@@ -95,7 +96,7 @@ class Mixer(object):
         instance = args
         self.payload_int[instance] = np.array(msg.payload)
         
-    def borad_pub_d(self, rate, pub, msg, run_event):
+    def board_pub_d(self, rate, pub, msg, run_event):
         rate = rospy.Rate(rate)
         while run_event.is_set() and not rospy.is_shutdown():
             if isinstance(msg, Evans):
@@ -138,26 +139,42 @@ class Mixer(object):
         
         self.joint_means = self._mask * self.joint_means
         
-        return self.joint_means
+        "if interrupted, everytime it detected it is interrupted, add a clock to mention itself how long has passed"
+        if (rospy.get_param(self._name+'/sys_interrupt')==1):
+            "clock start"
+            self._clock +=1
+            return self.sys_interrupt(self._clock)
+        else:
+            self._clock = 0
+            return self.joint_means
     "if there is any interrupt message, do interrupt first"
     "during this period, the motion of normal channel all goes into a buffer"
     "after the interrupt motion is finished, release this motion buffer"
     def sys_interrupt(self, confirm):
-        if (confirm == 999):
+        if (confirm != 0):
+            "make a seamless interruption"
+            jointstate_of_interrupt = self.joint_means
+            "weight of joint state"
+            wojs = utils.negative_to_zero(100-3*confirm)*0.01
             INT_joint_means = sum(self.weights_int*self.payload_int)
-        return INT_joint_means
+            
+        return wojs*jointstate_of_interrupt+(1-wojs)*INT_joint_means
     
     "subscribers for normal channels, or interrupt channels"
     def start(self):
         loop_rate = rospy.Rate(_RATE)
         
+        "broadcast messages"
         run_event = threading.Event()
         run_event.set()
-        broad_state = threading.Thread(target = self.borad_pub_d, args = (_TRATE, self.pub_s, self._state_msg, run_event))
+        broad_state = threading.Thread(target = self.board_pub_d, args = (_TRATE, self.pub_s, self._state_msg, run_event))
         broad_state.start()
         
         while not rospy.is_shutdown():
+            "blend tree to merge normal payloads"
             Evans_payload = self.merge()
+            "interrupt mechanism: if interrupt is triggered:"
+
             "make message"
             utils.make_message(self._pub_msg, 'mixer', 1, 1, Evans_payload)
             self.pub_p.publish(self._pub_msg)
