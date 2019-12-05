@@ -19,9 +19,7 @@ class JointInterrupt(object):
         self.angles = None
         self.pub = [[],[],[],[]]
         self.pub_msg = Evans()
-            
-        rospy.loginfo("[DEBUG]Activating Joint interrupts...")
-            
+                        
         self.robot_name = rospy.get_param('/xilva/ref_robot')
         driveunits = rospy.get_param(self.robot_name+'/drive_units')
         
@@ -89,4 +87,37 @@ class Joints(JointInterrupt):
 
     def reset(self):
         utils.make_message(self.pub_msg,'motion',0,0,self.zeros.values())
+        
         self.pub.publish(self.pub_msg)    
+        
+class Behaviors(JointInterrupt):
+    def __init__(self, channel):
+        JointInterrupt.__init__(self)
+
+        self.channel = 0
+        if (type(channel)==int):
+            self.channel = channel
+        else:
+            self.pubjoint = rospy.Publisher(channel, Evans, queue_size=3)                
+    def set_angles_to(self, angles, this_topic=None):
+        encoded_angles = self.set_angles(angles).values()
+        # change dict to list
+        print encoded_angles
+        utils.make_message(self.pub_msg,'behavior',0,0,encoded_angles)
+        self.pubjoint.publish(self.pub_msg)      
+    def reset(self):
+        utils.make_message(self.pub_msg,'behavior',0,0,self.zeros.values())
+        self.pubjoint.publish(self.pub_msg)    
+    
+    def doitnow(self, angles):
+        self.set_angles_to_channel(angles, self.channel)
+        return None
+    def doitlater(self, angles):
+        self.set_angles_to(angles)
+        return None
+    def compeleted(self):
+        try: 
+            self.interrupt_reset()
+        except AttributeError:
+            self.reset()
+        self.reset()
