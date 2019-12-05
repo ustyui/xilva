@@ -1,4 +1,4 @@
-robot: ibuki
+ref_robot: ibuki
 dofs: 50
 rate: 40
 broadcast: 5
