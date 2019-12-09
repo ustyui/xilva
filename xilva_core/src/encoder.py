@@ -22,7 +22,8 @@ This procedure also can be called personalization.
 dev_name = sys.argv[1]
 if dev_name == 'ibuki_gazebo':
     from ibuki_gazebo.ibuki import Ibuki
-    
+if dev_name == 'aoi_gazebo':
+    from ibuki_gazebo.Aoi import Aoi
 if dev_name == 'ibuki':
     from xilva_core.msg import EvansString
     pub_msg = EvansString()
@@ -62,6 +63,9 @@ if __name__ == "__main__":
     if (dev_name == "ibuki_gazebo"):
         protocol = xprotocols.ibuki_gazebo()
         robot = Ibuki()
+    elif (dev_name == "aoi_gazebo"):
+        protocol = xprotocols.ibuki_gazebo()
+        robot = Aoi()
     elif (dev_name == "ibuki"):
         protocol = xprotocols.ibuki()
     elif (dev_name == "commu_with_mobility"):
@@ -81,7 +85,9 @@ if __name__ == "__main__":
         if (dev_name == "ibuki_gazebo"):
             output = protocol.get_output(message._payload)
             robot.set_angles(output)
-        
+        if (dev_name == "aoi_gazebo"):
+            output = protocol.get_output(message._payload)
+            robot.set_angles(output)        
         if (dev_name == 'ibuki'):
             output = protocol.get_output(message._payload)
             for elements in output:

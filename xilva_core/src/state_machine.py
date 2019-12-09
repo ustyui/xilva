@@ -22,7 +22,8 @@ from modules.protocols import read_dfcsv
 
 _RATE = 50  # ros rate
 _driveunits = 50
-_KDC = 127.32395447
+#_KDC = 127.32395447
+_KDC = 57
 _RES = 0.01999
 
 _filename = sys.argv[1]
