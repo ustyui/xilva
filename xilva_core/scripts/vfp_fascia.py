@@ -59,7 +59,8 @@ class Network():
         self.selected_angles = np.take(payload_in, self.mapping)
         line_angles = np.take(payload_in, fasciamap)
         "<parameters>"
-        weights = np.take(np.array([1]*len(payload_in)), fasciamap)
+#        weights = np.take(np.array([1]*len(payload_in)), fasciamap)
+        weights = rospy.get_param('/ibuki//weights/' + fascia_name)
         "direction:if the direction of fascia line extends same with current cf"
         lengths = utils.negative_to_zero(sum(weights*line_angles*direction))
         est_tension = lengths*self.myu
@@ -89,6 +90,22 @@ if (__name__ == "__main__"):
     rate = rospy.Rate(20)
     vfp = Network()
     "<parameters>"
+    rospy.set_param('/ibuki/weights/sfll', [1, 1, 1])
+    rospy.set_param('/ibuki/weights/sflr', [1, 1, 1])
+    rospy.set_param('/ibuki/weights/sbl', [1, 1])
+    rospy.set_param('/ibuki/weights/lll', [1, 1, 1])
+    rospy.set_param('/ibuki/weights/llr', [1, 1, 1])
+    rospy.set_param('/ibuki/weights/spll', [1, 1, 1, 1, 1])
+    rospy.set_param('/ibuki/weights/splr', [1, 1, 1, 1, 1])
+    rospy.set_param('/ibuki/weights/dfall', [1, 1, 1, 1])
+    rospy.set_param('/ibuki/weights/dfalr', [1, 1, 1, 1])
+    rospy.set_param('/ibuki/weights/sfall', [1, 1, 1])
+    rospy.set_param('/ibuki/weights/sfalr', [1, 1, 1])
+    rospy.set_param('/ibuki/weights/dball', [1, 1])
+    rospy.set_param('/ibuki/weights/dbalr', [1, 1])
+    rospy.set_param('/ibuki/weights/sball', [1, 1, 1, 1])
+    rospy.set_param('/ibuki/weights/sbalr', [1, 1, 1, 1])
+    
     w = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
     while not rospy.is_shutdown():
         if (vfp.angles != []):
