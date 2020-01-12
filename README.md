@@ -4,6 +4,8 @@
 
 **Xilva** is an operation framework used on **androids**. 
 
+**-note: xilva is a refined version from [silva](https://github.com/ustyui/silva).**
+
 It is authored by [**Shiqi Yu**](https://shiqi-yu.com/), **Satoshi Yagi**, **Naoki Ise**, **Yifei Wang** and [**Yoshihiro Nakata**](http://yoshihiro-nakata.sakura.ne.jp/) from **Osaka University, Japan**. Currently, it is being maintained by [**Shiqi Yu**](https://shiqi-yu.com/). To use **silva**, A ROS environment under linux is necessary. For detail handbooks, please refer to [**xilvaDEVGuide**](/xilvaDEVGuide).
 
 <p align="center">
