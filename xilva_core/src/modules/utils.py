@@ -18,7 +18,7 @@ def read_yaml(_pkg = 'xilva_core', _filename = 'ibuki'):
     param_path = rospack.get_path(_pkg)+'/params/'+_filename+'.yaml'
     try:
         f = open(param_path, "r+")
-        return yaml.load(f)
+        return yaml.load(f, Loader=yaml.FullLoader)
     except IOError:
         return 0
     
