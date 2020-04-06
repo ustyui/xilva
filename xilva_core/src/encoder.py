@@ -50,7 +50,7 @@ if __name__ == "__main__":
     param_config = utils.read_yaml('xilva_core', 'config')
     _RATE = param_config['rate']
     
-    nh = rospy.init_node('X_encoder', anonymous=True)
+    nh = rospy.init_node('X_encoder')
     rate = rospy.Rate(_RATE)
     
     message = Received_msg()
