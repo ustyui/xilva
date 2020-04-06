@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+
+   <param name="robot_description" textfile="$(find ibuki_description)/urdf/ibuki.urdf" />  
+
+</launch>

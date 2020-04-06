@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+
+   <param name="robot_description" textfile="$(find ibuki_description)/urdf/aoi.urdf" />  
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="worlds/empty.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="gui" value="true"/>
+    
+  </include>
+  
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find ibuki_description)/urdf/aoi.urdf -urdf -model aoi -z 0.3" />
+
+  <include file="$(find ibuki_control)/launch/aoi_control.launch"/>
+
+
+
+</launch>

@@ -1,0 +1,97 @@
+aoi:
+  # Publish all joint states ---
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
+    # Position Controllers ---
+
+    # HIP
+  hip_p_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: hip_p_a
+    pid: {p: 100.0, i: 0.02, d: 1.0}
+
+  hip_r_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: hip_r_a
+    pid: {p: 100.0, i: 0.02, d: 1.0}
+
+  hip_y_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: hip_y_a
+    pid: {p: 100.0, i: 0.02, d: 1.0}
+
+  neck_r_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: neck_r_a
+    pid: {p: 100.0, i: 0.01, d: 1.0}
+
+  neck_p_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: neck_p_a
+    pid: {p: 100.0, i: 0.01, d: 1.0}
+
+  neck_y_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: neck_y_a
+    pid: {p: 100.0, i: 0.01, d: 1.0}
+
+  shoulderl_p_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: shoulderl_p_a
+    pid: {p: 9.9, i: 0.01, d: 1.0}
+
+  shoulderr_p_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: shoulderr_p_a
+    pid: {p: 9.9, i: 0.01, d: 1.0}
+
+  arml_r_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: arml_r_a
+    pid: {p: 9.9, i: 0.01, d: 1.0}
+
+  armr_r_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: armr_r_a
+    pid: {p: 9.9, i: 0.01, d: 1.0}
+
+  arml_y_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: arml_y_a
+    pid: {p: 9.9, i: 0.01, d: 1.0}
+
+  armr_y_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: armr_y_a
+    pid: {p: 9.9, i: 0.01, d: 1.0}
+
+  arml_p_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: arml_p_a
+    pid: {p: 9.9, i: 0.01, d: 0.1}
+
+  armr_p_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: armr_p_a
+    pid: {p: 9.9, i: 0.01, d: 0.1}
+
+  wristl_y_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: wristl_y_a
+    pid: {p: 9.9, i: 0.01, d: 1.0}
+
+  wristr_y_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: wristr_y_a
+    pid: {p: 9.9, i: 0.01, d: 1.0}
+
+  wristl_r_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: wristl_r_a
+    pid: {p: 9.9, i: 0.01, d: 1.0}
+
+  wristr_r_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: wristr_r_a
+    pid: {p: 9.9, i: 0.01, d: 1.0}
